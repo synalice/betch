@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h3>Записи</h3>
+<ul id="posts">
+<!-- Read more about `site.Params.mainSections` -->
+<!-- https://gohugo.io/functions/where/#mainsections -->
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections}}
+    {{ .Render "li" }}
+{{- end }}
+</ul>
+{{ end }}

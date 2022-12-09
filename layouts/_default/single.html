@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article>
+    <header id="post-header">
+        <h1>{{ .Title }}</h1>
+        <div>
+        {{- if isset .Params "date" -}}
+            {{ if eq .Lastmod .Date }}
+                <time>{{ .Date | time.Format ":date_long" }}</time>
+            {{ else }}
+                <time>Обновлено {{ .Lastmod | time.Format ":date_long" }}</time>
+            {{ end }}
+        {{- end -}}
+        
+        {{- if isset .Params "tags" -}}
+            <div>
+            {{ range .Params.tags }}
+                <a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">#{{ . }}</a>
+            {{ end }}
+            </div>
+        {{ end }}
+        </div>
+    </header>
+    {{- .Content -}}
+</article>
+{{ end }}
